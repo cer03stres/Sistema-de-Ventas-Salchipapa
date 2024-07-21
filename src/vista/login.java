@@ -1,9 +1,11 @@
 package vista;
 
 import java.awt.Dimension;
+import java.security.interfaces.RSAKey;
 import javax.swing.JOptionPane;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import javax.swing.ImageIcon;
 
 
 
@@ -15,12 +17,15 @@ public class login extends javax.swing.JFrame {
     private final String DB_PASSWORD = "admin";  
     public login() {
         initComponents();
+        setIconImage(new  ImageIcon(getClass().getResource("/imagenes/icono.png")).getImage());
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setTitle("LOGIN - SISTEMA DE VENTAS SALCHIPAPA");
         this.setSize(new Dimension(700,500));
+        
     }
-
+ 
+  
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -44,6 +49,7 @@ public class login extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(getIconImage());
 
         jPanel1.setBackground(new java.awt.Color(51, 153, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -70,6 +76,18 @@ public class login extends javax.swing.JFrame {
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icono3.png"))); // NOI18N
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icono4.png"))); // NOI18N
+
+        campoUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                campoUsuarioKeyPressed(evt);
+            }
+        });
+
+        CampoContraseña.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                CampoContraseñaKeyPressed(evt);
+            }
+        });
 
         jButton1.setBackground(new java.awt.Color(51, 153, 255));
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -183,16 +201,16 @@ public class login extends javax.swing.JFrame {
         String usuario = campoUsuario.getText().trim();
         String password = CampoContraseña.getText().trim();
         try {
-            // Establish connection
+            // establecer conexion
             java.sql.Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
             
-            // Prepare the query
+            // Preparar query
             String sql = "SELECT * FROM usuarios WHERE usuario = ? AND contraseña = ?";
             java.sql.PreparedStatement stmt =  conn.prepareStatement(sql);
             stmt.setString(1, usuario);
             stmt.setString(2, password);
             
-            // Execute the query
+            // ejecutar el query
              ResultSet  rs =  stmt.executeQuery();
 
  
@@ -207,7 +225,7 @@ public class login extends javax.swing.JFrame {
             }
    
 
-            // Close resources
+      
             rs.close();
             stmt.close();
             conn.close();
@@ -218,6 +236,19 @@ public class login extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void campoUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoUsuarioKeyPressed
+        if(evt.getKeyCode() == evt.VK_ENTER){
+            CampoContraseña.requestFocus();
+        }
+    }//GEN-LAST:event_campoUsuarioKeyPressed
+
+    private void CampoContraseñaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CampoContraseñaKeyPressed
+        if(evt.getKeyCode() == evt.VK_ENTER){
+            
+             
+        }
+    }//GEN-LAST:event_CampoContraseñaKeyPressed
 
     /**
      * @param args the command line arguments
@@ -248,7 +279,6 @@ public class login extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
             public void run() {
 new login().setVisible(true);
             }
