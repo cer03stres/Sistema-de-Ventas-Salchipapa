@@ -166,8 +166,8 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jPasswordField1" min="-2" pref="165" max="-2" attributes="0"/>
-                                  <Component id="jTextField1" min="-2" pref="165" max="-2" attributes="0"/>
+                                  <Component id="CampoContraseña" min="-2" pref="165" max="-2" attributes="0"/>
+                                  <Component id="campoUsuario" min="-2" pref="165" max="-2" attributes="0"/>
                                   <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -187,12 +187,12 @@
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jTextField1" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="campoUsuario" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jPasswordField1" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="CampoContraseña" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel5" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -224,9 +224,9 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField1">
+            <Component class="javax.swing.JTextField" name="campoUsuario">
             </Component>
-            <Component class="javax.swing.JPasswordField" name="jPasswordField1">
+            <Component class="javax.swing.JPasswordField" name="CampoContrase&#xf1;a">
             </Component>
             <Component class="javax.swing.JButton" name="jButton1">
               <Properties>
