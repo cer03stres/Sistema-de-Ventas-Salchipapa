@@ -1,16 +1,18 @@
-
 package vista;
 
-import controlador.Control_Usuarios;
 import java.awt.Dimension;
 import javax.swing.JOptionPane;
-import modelo.Usuarios;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
 
 
 
 public class login extends javax.swing.JFrame {
 
-   
+    // Database URL, username, and password
+    private final String DB_URL = "jdbc:mysql://localhost:3306/bd_salchipapa?useSSL=false";
+    private final String DB_USER = "root";  
+    private final String DB_PASSWORD = "admin";  
     public login() {
         initComponents();
         this.setResizable(false);
@@ -178,7 +180,43 @@ public class login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.Login();
+        String usuario = campoUsuario.getText().trim();
+        String password = CampoContraseña.getText().trim();
+        try {
+            // Establish connection
+            java.sql.Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+            
+            // Prepare the query
+            String sql = "SELECT * FROM usuarios WHERE usuario = ? AND contraseña = ?";
+            java.sql.PreparedStatement stmt =  conn.prepareStatement(sql);
+            stmt.setString(1, usuario);
+            stmt.setString(2, password);
+            
+            // Execute the query
+             ResultSet  rs =  stmt.executeQuery();
+
+ 
+            
+            if (rs.next()) {
+                JOptionPane.showMessageDialog(this, "Bienvenido Usuario " +usuario);
+                VistaAdmin vista = new VistaAdmin();
+                vista.setVisible(true);
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Usuario o Contraseña incorrectos");
+            }
+   
+
+            // Close resources
+            rs.close();
+            stmt.close();
+            conn.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+        }
+    
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -210,8 +248,9 @@ public class login extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
-                new login().setVisible(true);
+new login().setVisible(true);
             }
         });
     }
@@ -230,21 +269,6 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
-private void Login(){
-    if(!campoUsuario.getText().isEmpty() && !CampoContraseña.getText().isEmpty()){
-        Control_Usuarios controlUsuarios = new  Control_Usuarios();
-        Usuarios usuarios = new Usuarios();
-        usuarios.setUsuario(campoUsuario.getText().trim());
-        usuarios.setContraseña(CampoContraseña.getText().trim());
-        if(controlUsuarios.loginUser(usuarios)){
-             JOptionPane.showMessageDialog(null, "Login Correcto");
-        }else{
-            JOptionPane.showMessageDialog(null, "Usuario o Contraseña Incorrectos");
-        }
-    }else{
-        JOptionPane.showMessageDialog(null, "Ingrese sus credenciales");
-    }
-    }
 }
         
 
