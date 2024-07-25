@@ -9,7 +9,6 @@ import com.mysql.jdbc.Statement;
 import modelo.Usuarios;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import java.sql.ResultSet;
 
 
 /**
@@ -19,12 +18,13 @@ import java.sql.ResultSet;
 public class Control_Usuarios {
     public boolean loginUser(Usuarios objeto){
         boolean respuesta = false;
-        Connection cn  =  (Connection) Conexion.conectar();
-        String sql  = "select  usuario , contraseña from  usuarios  where usuario = \"cer03stres\" '"+ objeto.getUsuario()+"' and contraseña = \"123\" '"+objeto.getContraseña()+"'";
+        java.sql.Connection cn  =  Conexion.conectar();
+        //String sql  = "SELECT * FROM usuarios WHERE usuario = ? AND contraseña = ?";
+        String sql  = "SELECT usuario,contraseña  from usuarios WHERE usuario ='"+objeto.getUsuario()+"' AND contraseña = '"+objeto.getContraseña()+"'";
         Statement st;
         try {
-            st = (Statement) (Connection) Conexion.conectar();
-            ResultSet rs= st.executeQuery(sql);
+            st =  (Statement) cn.createStatement();
+            java.sql.ResultSet rs= st.executeQuery(sql);
             
             while (rs.next()){
                 respuesta =  true;

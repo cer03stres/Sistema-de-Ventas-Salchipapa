@@ -9,7 +9,8 @@ public class Conexion {
     public static Connection conectar(){
         try {
             
-            Connection cn = DriverManager.getConnection("jdbc:mysql//localhost//bd_salchipapa", "root", "admin");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bd_salchipapa?useSSL=false", "root", "admin");
+            return cn;
         } catch (SQLException e) {
             System.out.println("Error de conexion local" + e);      
         }

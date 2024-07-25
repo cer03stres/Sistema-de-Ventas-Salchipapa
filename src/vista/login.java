@@ -1,11 +1,10 @@
 package vista;
 
+import controlador.Control_Usuarios;
 import java.awt.Dimension;
-import java.security.interfaces.RSAKey;
-import javax.swing.JOptionPane;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import modelo.Usuarios;
 
 
 
@@ -198,43 +197,7 @@ public class login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String usuario = campoUsuario.getText().trim();
-        String password = CampoContraseña.getText().trim();
-        try {
-            // establecer conexion
-            java.sql.Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-            
-            // Preparar query
-            String sql = "SELECT * FROM usuarios WHERE usuario = ? AND contraseña = ?";
-            java.sql.PreparedStatement stmt =  conn.prepareStatement(sql);
-            stmt.setString(1, usuario);
-            stmt.setString(2, password);
-            
-            // ejecutar el query
-             ResultSet  rs =  stmt.executeQuery();
-
- 
-            
-            if (rs.next()) {
-                JOptionPane.showMessageDialog(this, "Bienvenido Usuario " +usuario);
-                VistaAdmin vista = new VistaAdmin();
-                vista.setVisible(true);
-                dispose();
-            } else {
-                JOptionPane.showMessageDialog(this, "Usuario o Contraseña incorrectos");
-            }
-   
-
-      
-            rs.close();
-            stmt.close();
-            conn.close();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
-        }
-    
-
-
+        this.Login();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void campoUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoUsuarioKeyPressed
@@ -245,8 +208,8 @@ public class login extends javax.swing.JFrame {
 
     private void CampoContraseñaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CampoContraseñaKeyPressed
         if(evt.getKeyCode() == evt.VK_ENTER){
+            this.Login(); 
             
-             
         }
     }//GEN-LAST:event_CampoContraseñaKeyPressed
 
@@ -299,6 +262,25 @@ new login().setVisible(true);
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
+
+    private void Login(){
+        if(!campoUsuario.getText().isEmpty() &&  !CampoContraseña.getText().isEmpty()){
+            Control_Usuarios controlusuarios = new Control_Usuarios();
+            Usuarios usuarios = new Usuarios();
+            usuarios.setUsuario(campoUsuario.getText().trim());
+            usuarios.setContraseña(CampoContraseña.getText().trim());
+            if(controlusuarios.loginUser(usuarios)){
+                JOptionPane.showMessageDialog(null, "Bienvenido Usuario "+ usuarios.getUsuario());
+                 VistaAdmin vista = new VistaAdmin();
+                 vista.setVisible(true);
+                 dispose();
+            }else{
+                JOptionPane.showMessageDialog(null, "Usuario o Contraseña Incorrectos");
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Ingrese sus credenciales");
+        }
+    }
 }
         
 
