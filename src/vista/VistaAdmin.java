@@ -5,13 +5,12 @@
 package vista;
 
 import java.awt.Dimension;
+import modelo.Usuarios;
 
 
 public class VistaAdmin extends javax.swing.JFrame {
  
-    /**
-     * Creates new form VistaAdmin
-     */
+    
     public VistaAdmin() {
         initComponents();
         this.setResizable(false);
@@ -19,6 +18,7 @@ public class VistaAdmin extends javax.swing.JFrame {
         this.setTitle("VISTA ADMIN");
         this.setSize(new Dimension(405,310));
     }
+    
  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -37,6 +37,11 @@ public class VistaAdmin extends javax.swing.JFrame {
         jLabel1.setText("Bienvenido Admin ");
 
         inventario.setText("Consultar Inventario");
+        inventario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inventarioActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Realizar Ventas");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -101,10 +106,17 @@ public class VistaAdmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+ 
         RealizarVentas ventas = new RealizarVentas();
+        
         ventas.setVisible(true);
         dispose();
+
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void inventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inventarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,4 +162,6 @@ public class VistaAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
+
 }
+
