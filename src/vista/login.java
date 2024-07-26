@@ -268,8 +268,8 @@ new login().setVisible(true);
             usuarios.setContraseña(CampoContraseña.getText().trim());
             if(controlusuarios.loginUser(usuarios)){
                 JOptionPane.showMessageDialog(null, "Bienvenido Usuario "+ usuarios.getUsuario());
-                 VistaAdmin vista = new VistaAdmin();
-                 vista.setVisible(true);
+                menu log = new menu();
+                log.setVisible(true);
                  dispose();
             }else{
                 JOptionPane.showMessageDialog(null, "Usuario o Contraseña Incorrectos");

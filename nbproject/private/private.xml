@@ -3,11 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/pablo/Documents/NetBeansProjects/Salchipapa/src/vista/RealizarVentas.java</file>
-            <file>file:/C:/Users/pablo/Documents/NetBeansProjects/Salchipapa/src/vista/VistaAdmin.java</file>
+            <file>file:/C:/Users/pablo/Documents/NetBeansProjects/Salchipapa/src/vista/menu.java</file>
             <file>file:/C:/Users/pablo/Documents/NetBeansProjects/Salchipapa/src/vista/login.java</file>
             <file>file:/C:/Users/pablo/Documents/NetBeansProjects/Salchipapa/src/controlador/Conexion.java</file>
-            <file>file:/C:/Users/pablo/Documents/NetBeansProjects/Salchipapa/src/modelo/Usuarios.java</file>
+            <file>file:/C:/Users/pablo/Documents/NetBeansProjects/Salchipapa/src/controlador/Control_Usuarios.java</file>
         </group>
     </open-files>
 </project-private>
